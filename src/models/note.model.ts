@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface INote extends Document {
+  _id: mongoose.Types.ObjectId;
   title: string;
   content: string;
   type?: 'text' | 'checklist';

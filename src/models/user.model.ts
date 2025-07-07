@@ -3,6 +3,7 @@ import jwt, { SignOptions } from 'jsonwebtoken';
 import type { StringValue } from 'ms';
 
 export interface IUser extends Document {
+  _id: Types.ObjectId;
   email: string;
   fullName: string;
   avatar?: string;
@@ -10,6 +11,8 @@ export interface IUser extends Document {
   notes: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
+
+  generateAccessToken(): string;
 }
 
 const userSchema = new Schema<IUser>(

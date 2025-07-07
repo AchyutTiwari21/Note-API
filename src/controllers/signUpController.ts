@@ -1,8 +1,9 @@
-import { User } from "../models/user.model";
+import { User, IUser } from "../models/user.model";
 import { OTP } from "../models/otp.model";
 import { asyncHandler, ApiResponse } from "../utils";
 
 export const signUp = asyncHandler ( async (req, res) => {
+  try {
     console.log('Request reached!', req.body);
     const { name, email, otp, dob }  = req.body;
 
@@ -32,7 +33,6 @@ export const signUp = asyncHandler ( async (req, res) => {
       });
     }
 
-    try {
       const user = await User.create({
         fullName: name,
         email: email,
