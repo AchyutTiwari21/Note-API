@@ -6,6 +6,7 @@ export interface IUser extends Document {
   email: string;
   fullName: string;
   avatar?: string;
+  dob: Date;
   notes: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
@@ -28,6 +29,10 @@ const userSchema = new Schema<IUser>(
         },
         avatar: {
             type: String
+        },
+        dob: {
+            type: Date,
+            required: true
         },
         notes: [{
             type: Schema.Types.ObjectId,
