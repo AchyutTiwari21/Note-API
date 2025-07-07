@@ -14,7 +14,7 @@ const generateAccessToken = async function(userId: string) {
     }
 }
 
-export const signInController = asyncHandler(async (req, res) => {
+export const signIn = asyncHandler(async (req, res) => {
     try {
         const { email, otp } = req.body;
     
