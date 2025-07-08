@@ -1,4 +1,4 @@
-import { User, IUser } from "../models/user.model";
+import { User } from "../models/user.model";
 import { OTP } from "../models/otp.model";
 import { asyncHandler, ApiResponse } from "../utils";
 
