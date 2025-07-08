@@ -67,7 +67,6 @@ export const signIn = asyncHandler(async (req, res) => {
             )
         );
     } catch (error: any) {
-        console.log("Error in signInController:", error.message);
         res.status(500).json({
             success: false,
             message: "Internal server error"

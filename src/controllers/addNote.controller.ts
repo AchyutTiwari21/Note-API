@@ -38,7 +38,6 @@ export const addNote = asyncHandler(async (req, res) => {
             new ApiResponse(201, note, "Note added successfully!", true)
         );
     } catch (error) {
-        console.error("Error adding note:", error);
         return res.status(500).json({
             success: false,
             message: "Error while adding note"

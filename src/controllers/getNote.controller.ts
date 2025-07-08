@@ -19,7 +19,6 @@ export const getNotes = asyncHandler(async (req, res) => {
             new ApiResponse(200, notes, "Notes retrieved successfully", true)
         );
     } catch (error) {
-        console.error("Error retrieving notes:", error);
         return res.status(500).json({
             success: false,
             message: "Error while retrieving notes"

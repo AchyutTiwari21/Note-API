@@ -4,7 +4,6 @@ import { asyncHandler, ApiResponse } from "../utils";
 
 export const signUp = asyncHandler ( async (req, res) => {
   try {
-    console.log('Request reached!', req.body);
     const { name, email, otp, dob }  = req.body;
 
     // Check if all details are provided

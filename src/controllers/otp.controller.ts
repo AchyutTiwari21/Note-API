@@ -28,10 +28,9 @@ export const sendOTP = asyncHandler( async (req, res) => {
     );
 
   } catch (error: any) {
-    console.log(error.message);
-    return res.status(500).json({ 
-      success: false, 
-      error: error.message 
-    });
+      return res.status(500).json({ 
+        success: false, 
+        error: error.message 
+      });
   }
 });

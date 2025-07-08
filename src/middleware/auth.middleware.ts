@@ -49,7 +49,6 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        console.error("JWT Verification Error:", error);
         res.status(500).json({
             message: "Internal Server Error",
             success: false

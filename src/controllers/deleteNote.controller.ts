@@ -26,7 +26,6 @@ export const deleteNote = asyncHandler(async (req, res) => {
             new ApiResponse(200, note, "Note deleted successfully", true)
         );
     } catch (error) {
-        console.error("Error deleting note:", error);
         return res.status(500).json({
             success: false,
             message: "Error while deleting note"
