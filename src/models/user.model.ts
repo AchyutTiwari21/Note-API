@@ -68,26 +68,4 @@ userSchema.methods.generateAccessToken = function () {
   );
 };
 
-
-// userSchema.methods.generateRefreshToken = function() {
-//     const secret = process.env.REFRESH_TOKEN_SECRET;
-//     const expiry = process.env.REFRESH_TOKEN_EXPIRY;
-
-//     if (!secret || !expiry) {
-//         throw new Error('Missing refresh token configuration');
-//     }
-
-//     const options: SignOptions = {
-//         expiresIn: expiry as StringValue,
-//     };
-
-//     return jwt.sign(
-//         {
-//             _id: this._id,
-//         },
-//         secret,
-//         options
-//     )
-// }
-
 export const User = mongoose.model<IUser>("User", userSchema);
