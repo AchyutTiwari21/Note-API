@@ -6,15 +6,7 @@ import { asyncHandler, ApiResponse } from '../utils';
 export const sendOTP = asyncHandler( async (req, res) => {
   try {
     const { email } = req.body;
-    // Check if user is already present
-    const checkUserPresent = await User.findOne({ email });
-    // If user found with provided email
-    if (checkUserPresent) {
-      return res.status(401).json({
-        success: false,
-        message: 'User is already registered',
-      });
-    }
+
     let otp = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
@@ -28,12 +20,12 @@ export const sendOTP = asyncHandler( async (req, res) => {
       result = await OTP.findOne({ otp: otp });
     }
     const otpPayload = { email, otp };
-    const otpBody = await OTP.create(otpPayload);
+    await OTP.create(otpPayload);
 
     return res
     .status(200)
     .json(
-        new ApiResponse(200, otp, "OTP sent successfully", true)
+        new ApiResponse(200, null, "OTP sent successfully", true)
     );
 
   } catch (error: any) {
