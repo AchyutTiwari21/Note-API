@@ -4,10 +4,10 @@ import { asyncHandler, ApiResponse } from "../utils";
 
 export const signUp = asyncHandler ( async (req, res) => {
   try {
-    const { name, email, otp, dob }  = req.body;
-
+    const { fullName, email, otp, dob }  = req.body;
+    
     // Check if all details are provided
-    if (!name || !email || !otp || !dob) {
+    if (!fullName || !email || !otp || !dob) {
         return res.status(403).json({
           success: false,
           message: 'All fields are required',
@@ -33,7 +33,7 @@ export const signUp = asyncHandler ( async (req, res) => {
     }
 
       const user = await User.create({
-        fullName: name,
+        fullName: fullName,
         email: email,
         dob: dob
       });
@@ -43,10 +43,11 @@ export const signUp = asyncHandler ( async (req, res) => {
       .json(new ApiResponse(201, user, "User created successfully!", true));
 
       return;
-    } catch(e) {
+    } catch(e: any) {
+      console.log(e.message);
       res.status(500).json({
         success: false,
-        message: "Error while signing up!"
+        message: e.message || "Internal Server Error"
       });
       return;
     }
