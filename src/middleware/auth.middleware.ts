@@ -12,8 +12,11 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
             });
             return;
         }
-        //@ts-ignore
-        const token = req.cookies?.accessToken || req.headers["Authorization"]?.replace("Bearer ", "");
+
+        const authHeader = req.headers["Authorization"];
+
+        const token = req.cookies?.accessToken ||
+        (typeof authHeader === "string" ? authHeader.replace("Bearer ", "") : undefined);
     
         if(!token) {
             res.status(401).json({
@@ -42,7 +45,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
             return;
         }
 
-        //@ts-ignore
+        // @ts-ignore
         req.user = user;
         next();
     } catch (error) {
