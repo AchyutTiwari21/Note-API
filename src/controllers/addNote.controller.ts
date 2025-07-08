@@ -6,9 +6,8 @@ export const addNote = asyncHandler(async (req, res) => {
         // Check if the user is authenticated
         //@ts-ignore
         const user = req?.user;
-        const userId = user?._id;
 
-        if(!user || !userId) {
+        if(!user) {
             return res.status(401).json({
                 success: false,
                 message: "User not authenticated"
@@ -30,7 +29,7 @@ export const addNote = asyncHandler(async (req, res) => {
             type: type || 'text',
             items: items || [],
             pinned: pinned || false,
-            user: userId
+            user: user._id
         });
 
         return res
