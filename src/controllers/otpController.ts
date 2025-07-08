@@ -1,6 +1,5 @@
 import otpGenerator from 'otp-generator';
 import { OTP } from '../models/otp.model';
-import { User } from '../models/user.model';
 import { asyncHandler, ApiResponse } from '../utils';
 
 export const sendOTP = asyncHandler( async (req, res) => {
