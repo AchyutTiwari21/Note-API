@@ -35,7 +35,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
             return;
         }
     
-        const user = await User.findById(decodedToken._id).select("-password -__v");
+        const user = await User.findById(decodedToken._id).select("-__v");
 
         if(!user) {
             res.status(401).json({
