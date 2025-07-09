@@ -20,28 +20,28 @@ This is the **backend API** for the Note-Taking App. It supports user authentica
 
 ### 1. Clone the repository
 
-\`\`\`bash
-git clone https://github.com/your-username/note-taking-backend.git
+```bash
+git clone https://github.com/your-username/Note-API.git
 cd Note-API
-\`\`\`
+```
 
 ### 2. Install dependencies
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 3. Create .env file
 
-Copy \`.env.example\` and configure environment variables:
+Copy `.env.example` and configure environment variables:
 
-\`\`\`bash
+```bash
 cp .env.example .env
-\`\`\`
+```
 
 #### .env
 
-\`\`\`env
+```env
 PORT=8000
 MONGODB_URI=mongodb://localhost:27017
 CORS_ORIGIN=http://localhost:5173
@@ -52,7 +52,7 @@ ACCESS_TOKEN_EXPIRY=expiry_time
 MAIL_HOST=your_email@example.com
 MAIL_USER=your_email@example.com
 MAIL_PASS=your_password
-\`\`\`
+```
 
 ---
 
@@ -60,16 +60,16 @@ MAIL_PASS=your_password
 
 ### Development Mode (with hot-reload)
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 ### Production Mode
 
-\`\`\`bash
+```bash
 npm run build
 npm start
-\`\`\`
+```
 
 ---
 
@@ -115,16 +115,18 @@ Use Postman or your frontend app to hit the endpoints. Ensure the \`credentials:
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 src/
 ├── controllers/
+├── db/
+├── middlewares/
 ├── models/
 ├── routes/
-├── middlewares/
 ├── utils/
-├── config/
+├── app.ts
+├── config.ts
 └── index.ts
-\`\`\`
+```
 
 ---
 
@@ -132,4 +134,3 @@ src/
 
 Achyut Tiwari  
 Feel free to contribute, suggest, or fork!
-EOF
