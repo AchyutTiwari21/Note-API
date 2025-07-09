@@ -5,6 +5,9 @@ import { CORS_ORIGIN } from "./config";
 
 const app = express();
 
+console.log("Origin:", CORS_ORIGIN);
+
+
 app.use(cors({
     origin: CORS_ORIGIN,
     credentials: true
