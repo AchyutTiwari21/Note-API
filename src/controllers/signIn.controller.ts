@@ -1,6 +1,7 @@
 import { User } from "../models/user.model";
 import { OTP } from "../models/otp.model";
 import { asyncHandler, ApiResponse } from "../utils";
+import { CookieOptions } from "express";
 
 const generateAccessToken = async function(userId: string) {
     try {
@@ -48,8 +49,11 @@ export const signIn = asyncHandler(async (req, res) => {
         // If user exists and OTP is valid, return jwt token and user details
         const { accessToken } = await generateAccessToken(user._id.toString());
 
-        const options = {
+        if (!accessToken) throw new Error("Access Token required");
+
+        const options: CookieOptions = {
             httpOnly: true,
+            sameSite: 'none',
             secure: true
         };
 

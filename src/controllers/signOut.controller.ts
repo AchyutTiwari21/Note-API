@@ -1,11 +1,13 @@
-import { User } from "../models/user.model";
 import { asyncHandler, ApiResponse } from "../utils";
+import { CookieOptions } from "express";
 
 export const signOut = asyncHandler(async (req, res) => {
-    const options = {
+    
+    const options: CookieOptions = {
         httpOnly: true,
+        sameSite: 'none',
         secure: true
-    }
+    };
 
     return res
     .status(200)

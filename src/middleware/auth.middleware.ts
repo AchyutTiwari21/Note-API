@@ -13,7 +13,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
             return;
         }
 
-        const authHeader = req.headers["Authorization"];
+        const authHeader = req.headers["authorization"];
 
         const token = req.cookies?.accessToken ||
         (typeof authHeader === "string" ? authHeader.replace("Bearer ", "") : undefined);
