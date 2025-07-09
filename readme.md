@@ -1,5 +1,4 @@
-cat > README.md << 'EOF'
-# 📝 Note-Taking App – Backend API
+# 📝 Note-API
 
 This is the **backend API** for the Note-Taking App. It supports user authentication (email + OTP & Google OAuth), note creation and deletion, and JWT-based authorization.
 
