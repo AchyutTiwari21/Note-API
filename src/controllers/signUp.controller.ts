@@ -32,7 +32,7 @@ export const signUp = asyncHandler ( async (req, res) => {
       });
     }
 
-      const user = await User.create({
+      await User.create({
         fullName: fullName,
         email: email,
         dob: dob
