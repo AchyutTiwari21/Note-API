@@ -56,7 +56,7 @@ export const updateNote = asyncHandler(async (req, res) => {
 
         res
         .status(200)
-        .json( new ApiResponse(200, updatedNote, "Note updated successfully!", true) );
+        .json( new ApiResponse(200, null, "Note updated successfully!", true) );
 
         return;
     } catch (error) {

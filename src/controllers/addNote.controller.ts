@@ -23,7 +23,7 @@ export const addNote = asyncHandler(async (req, res) => {
             });
         }
 
-        const note = await Notes.create({
+        await Notes.create({
             title,
             content,
             type: type || 'text',
@@ -35,7 +35,7 @@ export const addNote = asyncHandler(async (req, res) => {
         return res
         .status(201)
         .json(
-            new ApiResponse(201, note, "Note added successfully!", true)
+            new ApiResponse(201, null, "Note added successfully!", true)
         );
     } catch (error) {
         return res.status(500).json({

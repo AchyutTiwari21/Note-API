@@ -60,7 +60,13 @@ export const signIn = asyncHandler(async (req, res) => {
             new ApiResponse(
                 200,
                 {
-                    user, accessToken
+                    user: {
+                        _id: user._id,
+                        fullName: user.fullName,
+                        email: user.email,
+                        dob: user.dob
+                    }, 
+                    accessToken
                 },
                 "User logged In Successfuly",
                 true

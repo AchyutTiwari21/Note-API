@@ -40,7 +40,7 @@ export const signUp = asyncHandler ( async (req, res) => {
       
       res
       .status(200)
-      .json(new ApiResponse(201, user, "User created successfully!", true));
+      .json(new ApiResponse(201, null, "User created successfully!", true));
 
       return;
     } catch(e: any) {

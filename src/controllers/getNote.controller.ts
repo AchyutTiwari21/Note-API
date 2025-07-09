@@ -12,11 +12,16 @@ export const getNotes = asyncHandler(async (req, res) => {
             });
         }
 
-        const notes = await Notes.find({ user: user._id });
+        const notes = await Notes.find({ user: user._id }).select("-__v -type -items -pinned -archived -user");
         return res
         .status(200)
         .json(
-            new ApiResponse(200, notes, "Notes retrieved successfully", true)
+            new ApiResponse(
+                200, 
+                notes, 
+                "Notes retrieved successfully", 
+                true
+            )
         );
     } catch (error) {
         return res.status(500).json({

@@ -23,7 +23,7 @@ export const deleteNote = asyncHandler(async (req, res) => {
         }
 
         return res.status(200).json(
-            new ApiResponse(200, note, "Note deleted successfully", true)
+            new ApiResponse(200, null, "Note deleted successfully", true)
         );
     } catch (error) {
         return res.status(500).json({
