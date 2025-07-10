@@ -37,7 +37,7 @@ export const googleCallback = asyncHandler(async (req, res) => {
             code: code as string,
             client_id: GOOGLE_CLIENT_ID!,
             client_secret: GOOGLE_CLIENT_SECRET!,
-            redirect_uri: `http://localhost:8000/api/v1/google/googleCallback`,
+            redirect_uri: `https://note-api-bepr.onrender.com/api/v1/google/googleCallback`,
             grant_type: "authorization_code",
         }).toString()
     });
