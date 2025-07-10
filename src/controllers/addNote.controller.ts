@@ -1,4 +1,5 @@
 import { Notes } from "../models/note.model";
+import { User } from "../models/user.model";
 import { asyncHandler, ApiResponse } from "../utils";
 
 export const addNote = asyncHandler(async (req, res) => {
@@ -23,13 +24,17 @@ export const addNote = asyncHandler(async (req, res) => {
             });
         }
 
-        await Notes.create({
+        const note = await Notes.create({
             title,
             content,
             type: type || 'text',
             items: items || [],
             pinned: pinned || false,
             user: user._id
+        });
+
+        await User.findByIdAndUpdate(user._id, {
+            $push: { notes: note._id }
         });
 
         return res

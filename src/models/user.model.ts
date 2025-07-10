@@ -6,8 +6,9 @@ export interface IUser extends Document {
   _id: Types.ObjectId;
   email: string;
   fullName: string;
+  googleId?: string;
   avatar?: string;
-  dob: Date;
+  dob?: Date;
   notes: Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
@@ -30,12 +31,14 @@ const userSchema = new Schema<IUser>(
             trim: true,
             index: true
         },
+        googleId: {
+            type: String
+        },
         avatar: {
             type: String
         },
         dob: {
-            type: Date,
-            required: true
+            type: Date
         },
         notes: [{
             type: Schema.Types.ObjectId,

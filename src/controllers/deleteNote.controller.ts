@@ -1,4 +1,5 @@
 import { Notes } from "../models/note.model";
+import { User } from "../models/user.model";
 import { asyncHandler, ApiResponse } from "../utils";
 
 export const deleteNote = asyncHandler(async (req, res) => {
@@ -20,6 +21,10 @@ export const deleteNote = asyncHandler(async (req, res) => {
                 success: false,
                 message: "Note not found"
             });
+        } else {
+            await User.findByIdAndUpdate(user._id, {
+                $pull: { notes: noteId }
+            })
         }
 
         return res.status(200).json(

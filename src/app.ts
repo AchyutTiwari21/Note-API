@@ -22,4 +22,7 @@ app.use("/api/v1/user", userRoutes);
 import noteRoutes from "./routes/note.route";
 app.use("/api/v1/note", noteRoutes);
 
+import googleRoutes from "./routes/google.route";
+app.use("/api/v1/google", googleRoutes);
+
 export { app }

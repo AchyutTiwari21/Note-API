@@ -35,7 +35,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
             return;
         }
     
-        const user = await User.findById(decodedToken._id).select("-__v");
+        const user = await User.findById(decodedToken._id).select("-__v -createdAt -updatedAt");
 
         if(!user) {
             res.status(401).json({
@@ -48,9 +48,11 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         // @ts-ignore
         req.user = user;
         next();
-    } catch (error) {
+    } catch (error: any) {
+        console.log("Error: ", error.message);
+        
         res.status(500).json({
-            message: "Internal Server Error",
+            message: error.message || "Internal Server Error",
             success: false
         });
     }

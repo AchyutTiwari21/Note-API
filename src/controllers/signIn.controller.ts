@@ -3,7 +3,7 @@ import { OTP } from "../models/otp.model";
 import { asyncHandler, ApiResponse } from "../utils";
 import { CookieOptions } from "express";
 
-const generateAccessToken = async function(userId: string) {
+export const generateAccessToken = async function(userId: string) {
     try {
         const user = await User.findById(userId);
         const accessToken = user?.generateAccessToken();
@@ -79,7 +79,7 @@ export const signIn = asyncHandler(async (req, res) => {
     } catch (error: any) {
         res.status(500).json({
             success: false,
-            message: "Internal server error"
+            message: error.message || "Internal server error"
         })
     }
 })
