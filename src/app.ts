@@ -2,8 +2,16 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { CORS_ORIGIN } from "./config";
+import rateLimit from "express-rate-limit";
 
 const app = express();
+
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 10, // limit each IP to 10 requests per minute
+});
+
+app.use(limiter);
 
 app.use(cors({
     origin: CORS_ORIGIN,
