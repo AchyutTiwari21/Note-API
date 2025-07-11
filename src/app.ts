@@ -24,6 +24,10 @@ app.use(express.urlencoded({extended: true, limit: "1mb"}));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+app.get('/keep-alive', (req, res) => {
+  res.status(200).send('OK');
+});
+
 import userRoutes from "./routes/user.route";
 app.use("/api/v1/user", userRoutes);
 
