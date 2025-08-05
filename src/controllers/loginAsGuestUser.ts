@@ -1,5 +1,4 @@
 import { User } from "../models/user.model";
-import { OTP } from "../models/otp.model";
 import { asyncHandler, ApiResponse } from "../utils";
 import { CookieOptions } from "express";
 
@@ -15,15 +14,16 @@ export const generateAccessToken = async function(userId: string) {
     }
 }
 
-export const signIn = asyncHandler(async (req, res) => {
+export const loginAsGuest = asyncHandler(async (req, res) => {
     try {
-        const { email, otp } = req.body;
+        const { email, fullName } = req.body;
     
-        if (!email || !otp) {
-            return res.status(400).json({
+        if (!email || !fullName) {
+            res.status(400).json({
                 success: false,
-                message: "Email and OTP are required"
+                message: "Email and Full Name are required"
             });
+            return;
         }
 
         // Check if the user exists
@@ -37,16 +37,6 @@ export const signIn = asyncHandler(async (req, res) => {
             return;
         }
 
-        // Check if the OTP is valid
-        const response = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
-        if (response.length === 0 || otp !== response[0].otp) {
-            return res.status(400).json({
-                success: false,
-                message: 'The OTP is not valid.',
-            });
-        }
-
-        // If user exists and OTP is valid, return jwt token and user details
         const { accessToken } = await generateAccessToken(user._id.toString());
 
         if (!accessToken) throw new Error("Access Token required");
@@ -68,7 +58,7 @@ export const signIn = asyncHandler(async (req, res) => {
                         _id: user._id,
                         fullName: user.fullName,
                         email: user.email,
-                        dob: user.dob
+                        dob: user?.dob
                     }, 
                     accessToken
                 },
